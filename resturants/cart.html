@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart-FoodKing</title>
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <script src="https://kit.fontawesome.com/210a6adb7c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <a href="/home.html"><img src="../images/logo.png" alt="FoodKing" width="120px"></a>
+        </div>
+
+        <div class="nav-items">
+
+
+            <div class="location">
+                <i class="fa-solid fa-location-arrow" style="color: #db0a0a;"></i>
+                <select id="location">
+                    <option value="newyork">New York</option>
+                    <option value="losangeles">Los Angeles</option>
+                    <option value="chicago">Chicago</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Search food">
+                <button class="search-btn" onclick="searchRestaurants()"> <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="cart-items">
+
+    </section>
+
+
+    <div class="ordernow">
+        <button class="btn">Order Now</button>
+
+    </div>
+
+
+
+    <section class="total">
+        <div class="bill-items"></div>
+        <div class="bill">
+            <h5>Total amount<span>4000</span></h5>
+            <h5>GST<span></span>35</h5>
+            <h5>Delivery Charges<span>45</span></h5>
+            <h5>Total<span>5000</span></h5>
+        </div>
+        <div class="payment-btn">
+            <button class="btn" onclick="gotoPay()">Payment Method</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer">
+            <div class="row">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+            </div>
+
+            <div class="row">
+                <ul>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Career</a></li>
+                </ul>
+            </div>
+
+            <div class="row">
+                Copyright © 2023 FoodKing - All rights reserved || Designed By: RajKiran
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const cartItemsContainer = document.querySelector('.cart-items');
+
+        // Retrieve cart items from local storage
+        const storedItems = JSON.parse(localStorage.getItem('cartItems'));
+
+        // Append each item to the cart items container
+        storedItems.forEach(function (item) {
+            const itemContainer = document.createElement('div');
+            itemContainer.classList.add('cart-item');
+            const imgDiv = document.createElement('div');
+            imgDiv.classList.add('item-img');
+            imgDiv.innerHTML = item.itemImg;
+            itemContainer.appendChild(imgDiv);
+
+            const detailDiv = document.createElement('div');
+            detailDiv.classList.add('item-detail');
+            detailDiv.innerHTML = item.itemDetail;
+            itemContainer.appendChild(detailDiv);
+
+
+            cartItemsContainer.appendChild(itemContainer);
+        });
+    });
+
+
+</script>
+<script src="../script/cart.js"></script>
+<script src="../script/resturant.js"></script>
+<script>
+    function gotoPay() {
+        window.location.href = "../payment.html"
+    }
+</script>
+
+</html>
